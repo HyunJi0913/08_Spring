@@ -2,6 +2,7 @@ package org.scoula.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -42,8 +43,8 @@ public class HomeController {
      * @return "index" - 논리적 뷰 이름 (index.jsp)
      */
     @GetMapping("/")
-    public String home() {
-        log.info("================> HomeController /");
-        return "index"; // View의 이름 (ServletConfig의 ViewResolver에 의해 /WEB-INF/views/index.jsp로 변환)
+    public String home(Model model) {
+        model.addAttribute("name", "홍길동");
+        return "index";
     }
 }

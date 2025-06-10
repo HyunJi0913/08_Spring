@@ -9,15 +9,18 @@ import org.springframework.web.bind.annotation.*;
 @Log4j2                        // 로깅을 위한 Lombok 어노테이션
 public class SampleController {
 
-    @RequestMapping("")        // 메서드 레벨 - 세부 경로 ("" = 기본 경로만 사용)
-    public void basic() {      // void 리턴 = RequestMapping과 동일한 이름의 JSP 자동 매핑
-        log.info("[GET] /sample 요청 처리됨 ! ");
-        // /sample 요청 시 /WEB-INF/views/sample.jsp로 forward
+    @RequestMapping("") // url: /sample
+    public void basic() {
+        log.info("basic............");
+    }
+    @RequestMapping(value="/basic", method= {RequestMethod.GET, RequestMethod.POST}) // url: /sample/basic
+    public void basicGet(){
+        log.info("basic get............");
+    }
+    @GetMapping("/basicOnlyGet") // url: /sample/basicOnlyGet
+    public void basicGet2(){
+        log.info("basic get only get............");
     }
 
-    @RequestMapping(value="/basic2")
-    public void basic2(){
-        log.info("[GET] /sample/basic 요청 처리됨 ! ");
-    }
 
 }
